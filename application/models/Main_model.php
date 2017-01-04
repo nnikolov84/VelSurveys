@@ -132,6 +132,14 @@
       	$query = $this->db->get();
       	return $query;
       }
+      function fetch_sentiment($id_sentiment)
+      {
+      	$this->db->select("description");
+      	$this->db->from("tbl_dim_sentiments");
+      	$this->db->where("id_sentiment", $id_sentiment);
+      	$query = $this->db->get();
+      	return $query;
+      }
       function fetch_languages()
       {
       	$this->db->select("*");
@@ -142,9 +150,9 @@
       }
       function fetch_language_id($language)
       {
-      	$this->db->select("id_language");
+        $this->db->select("id_language");
       	$this->db->from("tbl_dim_languages");
-      	$this->db->where("description", $language);
+      	$this->db->where("description", isset($language) ? $language : "Unknown");
       	$query = $this->db->get();
       	return $query;
       }

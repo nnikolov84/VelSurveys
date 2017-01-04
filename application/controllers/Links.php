@@ -12,16 +12,15 @@ class Links extends MY_Controller {
 		$data ["survey_data"] = $this->main_model->fetch_single_data ($survey_id);
 		$data ["fetch_links"] = $this->main_model->fetch_links ($survey_id);
 		$data ["languages_data"] = $this->main_model->fetch_languages();
+		$data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "links", $data );
 		$this->load->view ( "footer" );
 	}	
 	public function form_validation() {
 		// echo 'OK';
 		$this->load->library ( 'form_validation' );
-		$this->form_validation->set_rules ( "content", "Content", 'required' );
+		$this->form_validation->set_rules ( "comment", "Comment");
 		$this->form_validation->set_rules ( "link", "Link", 'required' );
-		$this->form_validation->set_rules ( "language", "Language", 'required' );
-		$this->form_validation->set_rules ( "publish_date", "Publish Date", 'required|date' );
 		if ($this->form_validation->run ()) {
 			// true
 			$this->load->model ( "main_model" );
@@ -39,9 +38,7 @@ class Links extends MY_Controller {
 						"id_source" =>  $id_source,
 						"id_sentiment" => 15,
 						"link" => $this->input->post ( "link" ),
-						"content" => $this->input->post ( "content" ),
-						"publish_date" => $this->input->post ( "publish_date" ),
-						"author" => $this->input->post ( "author" ),
+						"comment" => $this->input->post ( "comment" ),
 						"last_updated_by" => $this->session->userdata ( "username" ),
 						"last_update_Date" => date ( 'Y-m-d H:i:s' )
 				);
@@ -56,9 +53,7 @@ class Links extends MY_Controller {
 						"id_source" =>  $id_source,
 						"id_sentiment" => 15,
 						"link" => $this->input->post ( "link" ),
-						"content" => $this->input->post ( "content" ),
-						"publish_date" => $this->input->post ( "publish_date" ),
-						"author" => $this->input->post ( "author" ),
+						"comment" => $this->input->post ( "comment" ),
 						"last_updated_by" => $this->session->userdata ( "username" ),
 						"last_update_Date" => date ( 'Y-m-d H:i:s' ),
 						"created_by" => $this->session->userdata ( "username" ) 
@@ -78,6 +73,7 @@ class Links extends MY_Controller {
 		$data ["survey_data"] = $this->main_model->fetch_single_data ($survey_id);
 		$data ["fetch_links"] = $this->main_model->fetch_links ($survey_id);
 		$data ["languages_data"] = $this->main_model->fetch_languages();
+		$data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "header" );
 		$this->load->view ( "links", $data );
 		$this->load->view ( "footer" );
@@ -90,6 +86,7 @@ class Links extends MY_Controller {
 		$data ["survey_data"] = $this->main_model->fetch_single_data ($id_survey);
 		$data ["fetch_links"] = $this->main_model->fetch_links ($id_survey);
 		$data ["languages_data"] = $this->main_model->fetch_languages();
+		$data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "header" );
 		$this->load->view ( "links", $data );
 		$this->load->view ( "footer" );
@@ -102,6 +99,7 @@ class Links extends MY_Controller {
 		$data ["link_data"] = $this->main_model->fetch_single_link ($link_id);
 		$data ["fetch_links"] = $this->main_model->fetch_links ($survey_id);
 		$data ["languages_data"] = $this->main_model->fetch_languages();
+		$data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "header" );
 		$this->load->view ( "links", $data );
 		$this->load->view ( "footer" );
@@ -112,6 +110,7 @@ class Links extends MY_Controller {
 		$data ["survey_data"] = $this->main_model->fetch_single_data ($id_survey);
 		$data ["fetch_links"] = $this->main_model->fetch_links ($id_survey);
 		$data ["languages_data"] = $this->main_model->fetch_languages();
+		$data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "header" );
 		$this->load->view ( "links", $data );
 		$this->load->view ( "footer" );

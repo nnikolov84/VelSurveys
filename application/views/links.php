@@ -46,50 +46,11 @@ foreach ( $link_data->result () as $row ) {
 				<span class="text-danger"><?php echo form_error("link"); ?></span>
 			</div>
 			<div class="form-group">
-				<label>Content</label>
-				<textarea name="content" class="form-control" required><?php echo $row->content; ?></textarea>
-				<span class="text-danger"><?php echo form_error("content"); ?></span>
+				<label>Comment</label>
+				<textarea name="comment" class="form-control" required><?php echo $row->comment; ?></textarea>
+				<span class="text-danger"><?php echo form_error("comment"); ?></span>
 			</div>
-			<div class="row">
-
-				<div class="col-sm-4 form-group">
-					<label>Language</label> <select class="form-control" name="language" required>			
-			 	<?php
-						if (isset ( $languages_data )) {
-						 foreach ( $languages_data->result () as $lng_row ) 
-						 {
-						?> 
-				        <option id="<?php echo 'rb_sent_'+$lng_row->id_language;?>"
-							<?php echo set_select('add_fields_type','text', ( !empty($row->id_language) && $row->id_language == $lng_row->id_language ? TRUE : FALSE ))?>>
-							<?php echo $lng_row->description;?></option>
-				<?php
-					}
-					}
-					?>			
-					</select>
-				</div>
-
-				<div class="col-sm-4 form-group">
-					<label>Publish date</label> 
-                <?php
-													foreach ( $survey_data->result () as $srv_row ) {
-														?> 
-                <input type="date" name="publish_date"
-						class="form-control" value="<?php echo $row->publish_date;?>"
-						min="<?php echo$srv_row->start_date;?>"
-						max="<?php echo$srv_row->end_date;?>" required /> <span
-						class="text-danger"><?php echo form_error("publish_date"); ?></span> 
-                <?php
-													}
-													?>    
-           </div>
-				<div class="col-sm-4 form-group">
-					<label>Author</label> <input type="text" name="author"
-						value="<?php echo $row->author; ?>" class="form-control" /> <span
-						class="text-danger"><?php echo form_error("author"); ?></span>
-				</div>
-			</div>
-			<div class="form-group" align="right">
+		<div class="form-group" align="right">
 				<input type="hidden" name="id_link" value="<?php echo $row->id_link; ?>" /> 
 				<input type="hidden" name="id_survey" value="<?php echo $row->id_survey; ?>" /> <input
 					type="submit" name="update" value="Update" class="btn btn-info" />
@@ -105,48 +66,9 @@ foreach ( $link_data->result () as $row ) {
 					class="form-control" required /> <span class="text-danger"><?php echo form_error("link"); ?></span>
 			</div>
 			<div class="form-group">
-				<label>Content</label>
+				<label>Comment</label>
 				<textarea name="content" class="form-control" required></textarea>
-				<span class="text-danger"><?php echo form_error("content"); ?></span>
-			</div>
-			<div class="row">
-
-				<div class="col-sm-4 form-group">
-					<label>Language</label> <select class="form-control" name="language" required>
-					<option></option>								
-			 	<?php
-					foreach ( $languages_data->result () as $lng_row ) {
-					?> 
-				        <option id="<?php echo 'rb_sent_'+$lng_row->id_language;?>"><?php echo $lng_row->description;?></option>
-				<?php
-				}
-				?>			
-					</select> <span class="text-danger"><?php echo form_error("language"); ?></span>
-					<script type="text/javascript">
-				$("#language").change(function() {
-  				var product_code = $("#language").val();
- 				 </script>
-
-				</div>
-
-				<div class="col-sm-4 form-group">
-					<label>Publish date</label> 
-                <?php
-	foreach ( $survey_data->result () as $srv_row ) {
-	?> 
-                <input type="date" name="publish_date"
-						class="form-control" value="<?php echo$srv_row->start_date;?>"
-						min="<?php echo$srv_row->start_date;?>"
-						max="<?php echo$srv_row->end_date;?>" required /> <span
-						class="text-danger"><?php echo form_error("publish_date"); ?></span> 
-                <?php
-												}
-												?>    
-           </div>
-				<div class="col-sm-4 form-group">
-					<label>Author</label> <input type="text" name="author"
-						class="form-control" /> <span class="text-danger"><?php echo form_error("author"); ?></span>
-				</div>
+				<span class="text-danger"><?php echo form_error("comment"); ?></span>
 			</div>
 			<div class="form-group" align="right">
 				<input type="submit" name="insert" value="Insert"
@@ -165,9 +87,10 @@ foreach ( $link_data->result () as $row ) {
 					<th>ID</th>
 					<th>Source</th>
 					<th>Link</th>
+					<th>Details</th>
 					<th>Comments</th>
-					<th>Publish date</th>
-					<th>Author</th>
+					<th>Relevent</th>
+					<th>Sentiment</th>
 					<th>Delete</th>
 					<th>Update</th>
 				</tr>  
@@ -180,9 +103,14 @@ foreach ( $link_data->result () as $row ) {
 					<td><?php echo $row->cource_desc; ?></td>
 					<td><a href="<?php echo $row->link; ?>" target="_blank">Link</a></td>
 					<td>
-					<a href="<?php echo base_url(); ?>index.php/link_details/index/<?php echo $row->id_survey; ?>/<?php echo $row->id_link; ?>"><?php echo $row->comments_count; ?></a></td>
-					<td><?php echo date('d.m.Y', strtotime($row->publish_date)); ?></td>
-					<td><?php echo $row->author; ?></td>
+					<a href="<?php echo base_url(); ?>index.php/link_details/index/<?php echo $row->id_survey; ?>/<?php echo $row->id_link; ?>">Details</a></td>
+					<td><?php echo $row->comments_count; ?></td>
+					<td><?php if ($row->yn_relevant == "Y") { echo "YES"; } elseif ($row->yn_relevant == "N") {echo "NO"; }; ?></td>
+					<td><?php 
+						foreach ( $sentiments_data->result () as $snt_row ) {
+							if ($row->id_sentiment == $snt_row->id_sentiment) { echo $snt_row->description;; }
+						}
+						?></td>
 					<td><a href="#" class="delete_data"
 						id="<?php echo $row->id_link; ?>"
 						id_survey="<?php echo $row->id_survey; ?>">Delete</a></td>
@@ -214,7 +142,7 @@ foreach ( $link_data->result () as $row ) {
                 var id_survey = $(this).attr("id_survey"); 
                 if(confirm("Are you sure you want to delete link "+id_link+"?"))  
                 {
-                	if(confirm("Чакай, чакай! \n Сигурни ли сте, че искате да изтриете този линк, заедно с всички данни за него? ID: " +id_link))  
+                	if(confirm("Wait, wait! \n Are you absolutely sure you want to delete link? ID: " +id_link))  
                     {  
                 		 window.location="<?php echo base_url(); ?>index.php/links/delete_data/"+id_survey+"/"+id_link;  
                     }  

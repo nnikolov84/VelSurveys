@@ -86,6 +86,7 @@ class Surveys extends MY_Controller {
 		$link_data ["survey_data"] = $this->main_model->fetch_single_data ( $survey_id );
 		$link_data ["fetch_links"] = $this->main_model->fetch_links ($survey_id);
 		$link_data ["languages_data"] = $this->main_model->fetch_languages();
+		$link_data ["sentiments_data"] = $this->main_model->fetch_sentiments();
 		$this->load->view ( "header" );
 		$this->load->view ( "links", $link_data );
 		$this->load->view ( "footer" );

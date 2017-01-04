@@ -5,7 +5,6 @@
 		
 		<div class="well">
 			<h2>Welcome</h2>
-			<p>Helouuuu Гръмммм :) </p>
 		</div>
     </div>
 
