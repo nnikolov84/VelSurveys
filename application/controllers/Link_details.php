@@ -68,9 +68,9 @@ class Link_details extends MY_Controller {
 								"last_update_Date" => date ( 'Y-m-d H:i:s' )
 						);
 			
-						$this->main_model->update_comment ( $data, $this->input->post ( "id_link" ) );
-						redirect ( base_url () . "index.php/links/updated/".$this->input->post ( "id_survey" ) );
-					}
+						$this->main_model->update_comment ( $data, $this->input->post ( "id_comment" ) );
+						redirect ( base_url () . "index.php/link_details/index/".$this->input->post ( "id_survey" )."/".$this->input->post ( "id_link" )."/".$this->input->post ( "id_comment" ) );
+						}
 					if ($this->input->post ( "insert" )) {
 						$data = array (
 								"id_link" =>  $this->input->post ( "id_link" ),
