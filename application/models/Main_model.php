@@ -77,10 +77,11 @@
 ///////////// COMMENTS  ///////////////////
       function fetch_comments($id_link)
       {
-      	$this->db->select("*");
-      	$this->db->from("tbl_comments");
+      	$this->db->select("t1.*");
+      	$this->db->from("tbl_comments t1");
+    //  	$this->db->join("(SELECT @rn:=0) t2", "CROSS");
       	$this->db->where("id_link", $id_link);
-      	$this->db->order_by("id_comment DESC");
+      	$this->db->order_by("id_comment");
       	$query = $this->db->get();
       	return $query;
       }
