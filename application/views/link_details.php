@@ -12,13 +12,15 @@ foreach ( $link_data->result () as $row ) {
 	</div>
 	<!-- NAVIGATION TABS -->
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#link" data-toggle="tab"
+		<li class=""><a href="#link" data-toggle="tab"
 			aria-expanded="false">Link</a></li>
 		<li class=""><a href="#comments" data-toggle="tab"
 			aria-expanded="true">Comments</a></li>
+		<li class="active"><a href="#test" data-toggle="tab"
+			aria-expanded="true">Test</a></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade active in well" id="link">
+		<div class="tab-pane fade in well" id="link">
 			<!-- link data area --------------------------------------------------------------------------------------->		
 			<form method="post" class="form-horizontal"
 				action="<?php echo base_url()?>index.php/Link_details/update_link">  
@@ -129,12 +131,10 @@ foreach ( $link_data->result () as $row ) {
 	</form>
 </div>
 		<!-- link data area END --------------------------------------------------------------------------------------->
-		<div class="tab-pane fade active in" id="comments">
+		<div class="tab-pane fade in" id="comments">
 			<!-- comment data area --------------------------------------------------------------------------------------->
 
-<?php foreach ($comments_data->result () as $com_row) { ?>
-<ul class="pagination">
-    <li><a href="#">&laquo;</a>			
+<?php foreach ($comments_data->result () as $com_row) { ?>		
 			<form method="post" class="form-horizontal"
 				action="<?php echo base_url()?>index.php/Link_details/form_validation">  
 
@@ -226,10 +226,8 @@ foreach ( $link_data->result () as $row ) {
 				</fieldset>
 									
 	</form>
-</li>	
 		<?php }?>
 <!-- ---------------------------------------- -->
-<li><a href="#">&raquo;
 <form method="post" class="form-horizontal"
 				action="<?php echo base_url()?>index.php/Link_details/form_validation">  
 
@@ -318,9 +316,48 @@ foreach ( $link_data->result () as $row ) {
 				</fieldset>
 									
 	</form>		
-</a></li>
-</ul>
 	
+</div>
+
+
+<div class="tab-pane fade active in" id="test">	
+
+	
+               
+                    <h2 id="example-full">Full example</h2>
+                    <div class="bs-docs-example">
+                        <p class="demo demo4_top"></p>
+                        <p class="well demo content4">
+                            Dynamic content here.
+                        </p>
+                        <p class="demo demo4_bottom"></p>
+                    </div>
+
+
+                    <script type="text/javascript">
+				$('.demo4_top,.demo4_bottom').bootpag({
+                            total: 50,
+                            page: 1,
+                            maxVisible: 5,
+                            leaps: true,
+                            firstLastUse: true,
+                            first: '<span aria-hidden="true">&larr;</span>',
+                            last: '<span aria-hidden="true">&rarr;</span>',
+                            wrapClass: 'pagination',
+                            activeClass: 'active',
+                            disabledClass: 'disabled',
+                            nextClass: 'next',
+                            prevClass: 'prev',
+                            lastClass: 'last',
+                            firstClass: 'first'
+                        }).on("page", function(event, num){
+                       //     $(".content4").load("<?php echo base_url(); ?>assets/html/comment.php?ID="+num);
+                            $(".content4").load("<?php echo base_url(); ?>index.php/editor?ID="+num);
+                            }).find('.pagination');
+
+                        
+                    </script>                  
+                         
 </div>
 </div>
 	<?php }?>	

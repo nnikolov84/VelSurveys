@@ -5,6 +5,7 @@
 		
 		<div class="well">
 			<h2>Welcome</h2>
+			<p>кирилица:) </p>
 		</div>
     </div>
 

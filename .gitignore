@@ -1,0 +1,4 @@
+$ cat .gitignore
+/application/ci_sessions/
+/.*
+!/.gitignore

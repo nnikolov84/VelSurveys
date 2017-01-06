@@ -13,6 +13,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
 	
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.bootpag.js"></script>
+    
     <link href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
