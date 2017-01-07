@@ -79,7 +79,6 @@
       {
       	$this->db->select("t1.*");
       	$this->db->from("tbl_comments t1");
-    //  	$this->db->join("(SELECT @rn:=0) t2", "CROSS");
       	$this->db->where("id_link", $id_link);
       	$this->db->order_by("id_comment");
       	$query = $this->db->get();

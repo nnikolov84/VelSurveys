@@ -13,13 +13,13 @@ foreach ( $link_data->result () as $row ) {
 	</div>
 	<!-- NAVIGATION TABS -->
 	<ul class="nav nav-tabs">
-		<li class=""><a href="#link" data-toggle="tab"
+		<li class="active"><a href="#link" data-toggle="tab"
 			aria-expanded="false">Link</a></li>
-		<li class="active"><a href="#comments" data-toggle="tab"
+		<li class=""><a href="#comments" data-toggle="tab"
 			aria-expanded="true">Comments</a></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade in well" id="link">
+		<div class="tab-pane fade in active well" id="link">
 			<!-- link data area --------------------------------------------------------------------------------------->		
 			<form method="post" class="form-horizontal"
 				action="<?php echo base_url()?>index.php/Link_details/update_link">  
@@ -130,7 +130,7 @@ foreach ( $link_data->result () as $row ) {
 	</form>
 </div>
 		<!-- link data area END --------------------------------------------------------------------------------------->
-		<div class="tab-pane fade active in" id="comments">
+		<div class="tab-pane fade in" id="comments">
 			<!-- comment data area --------------------------------------------------------------------------------------->
 
 
@@ -157,9 +157,14 @@ foreach ( $link_data->result () as $row ) {
 <?php $com_arr = $comments_data->result () ?>
 	
  <table class="table table-bordered">  
- <tr align="center">                                  
-<?php foreach ($comments_data->result () as $com_row) { ?>	
-     <th class="btn btn comBtn comBtn<?php echo $com_row->id_comment?>" onclick="updComment(<?php echo $com_row->id_comment?>, <?php echo $srv_row->id_survey;?>);"><?php echo $com_row->id_comment;?></th> 
+ <tr align="center">                                 
+ 
+<?php 
+$com_rn=0;
+foreach ($comments_data->result () as $com_row){ 
+$com_rn++;
+	?>	
+     <th class="btn btn comBtn comBtn<?php echo $com_row->id_comment?>" onclick="updComment(<?php echo $com_row->id_comment?>, <?php echo $srv_row->id_survey;?>);"><?php echo $com_rn;?></th> 
 <?php } ?>
 <th class="btn btn-info" onclick="updComment(-1, <?php echo $srv_row->id_survey;?>);">new</th>	
   </tr>

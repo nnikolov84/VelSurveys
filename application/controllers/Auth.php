@@ -9,7 +9,7 @@ class Auth extends MY_Controller {
 	public function logged_in_check()
 	{
 		if ($this->session->userdata("logged_in")) {
-			redirect("dashboard");
+			redirect("surveys");
 		}
 	}
 
@@ -38,7 +38,7 @@ class Auth extends MY_Controller {
 				$this->session->set_userdata($this->auth->get_data());
 				$this->session->set_userdata("logged_in", true);
 				// redirect to dashboard
-				redirect("dashboard");
+				redirect("surveys");
 			}
 		}
 

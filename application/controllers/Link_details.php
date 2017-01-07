@@ -7,7 +7,7 @@ class Link_details extends MY_Controller {
 	// functions
 	public function index() {
 		$this->load->view ( "header" );
-		$this->load->view ("navbar");
+//		$this->load->view ("navbar");
 		$survey_id = $this->uri->segment ( 3 );
 		$link_id = $this->uri->segment ( 4 );
 		$this->load->model ( "main_model" );

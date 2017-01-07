@@ -27,7 +27,8 @@ class Links extends MY_Controller {
 			$id_source_res = $this->main_model->fetch_source_id_from_link($this->input->post ( "link" ));
 			if(isset($id_source_res)) {
 				$id_source =$id_source_res->row()->id_source;
-			} else
+			} else 
+			$id_source = $this->main_model->fetch_source_id_from_link("UnknownUnknown");
 			{
 				$id_source = $this->main_model->fetch_source_id('Unknown')->row()->id_source;
 			};
