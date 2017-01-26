@@ -30,7 +30,6 @@ class Link_details extends MY_Controller {
 						"content" => $this->input->post ( "content" ),
 						"content_translated" => $this->input->post ( "content_translated" ),
 						"link" => $this->input->post ( "link" ),
-						"comment" => $this->input->post ( "comment" ),
 						"author" => $this->input->post ( "author" ),
 						"publish_date" => $this->input->post ( "publish_date" ),
 						"last_updated_by" => $this->session->userdata ( "username" ),

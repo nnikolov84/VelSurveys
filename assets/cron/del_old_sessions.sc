@@ -1,0 +1,1 @@
+find /velsurveys1.rf.gd/htdocs/application/ci_sessions -type f -delete

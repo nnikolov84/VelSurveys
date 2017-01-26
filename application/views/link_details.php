@@ -190,7 +190,7 @@ $com_rn++;
                     	$(".comm_detail").load("<?php echo base_url(); ?>index.php/comment?id_comment="+id_comment+"&id_survey="+<?php echo $row->id_survey; ?>);
                     	$('.comBtn').removeClass('btn-info');
                         $('.comBtn'+id_comment).addClass('btn-info');
-                    	 } 
+                    	 }
                     </script>  
 </div>
 	<?php }?>	

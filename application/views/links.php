@@ -67,7 +67,7 @@ foreach ( $link_data->result () as $row ) {
 			</div>
 			<div class="form-group">
 				<label>Comment</label>
-				<textarea name="content" class="form-control" required></textarea>
+				<textarea name="comment" class="form-control" required></textarea>
 				<span class="text-danger"><?php echo form_error("comment"); ?></span>
 			</div>
 			<div class="form-group" align="right">

@@ -37,7 +37,6 @@ class Links extends MY_Controller {
 						"id_survey" => $this->input->post ( "id_survey" ),
 						"id_language" => $this->main_model->fetch_language_id($this->input->post ( "language" ))->row()->id_language,
 						"id_source" =>  $id_source,
-						"id_sentiment" => 15,
 						"link" => $this->input->post ( "link" ),
 						"comment" => $this->input->post ( "comment" ),
 						"last_updated_by" => $this->session->userdata ( "username" ),
