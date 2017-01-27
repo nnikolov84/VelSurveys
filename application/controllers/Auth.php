@@ -36,6 +36,7 @@ class Auth extends MY_Controller {
 				// success
 				// store the user data to session
 				$this->session->set_userdata($this->auth->get_data());
+				$this->session->set_userdata("IP", $_SERVER['REMOTE_ADDR']);
 				$this->session->set_userdata("logged_in", true);
 				// redirect to dashboard
 				redirect("surveys");
